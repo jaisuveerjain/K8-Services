@@ -3,7 +3,7 @@ kind: Service
 metadata:
         name: service-file
 spec:
-  ClusteIP: None
+  ClusterIP: None
   selector:
          app: ip-app
   ports:
