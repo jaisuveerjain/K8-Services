@@ -1,0 +1,20 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: go-app-argo-config
+  namespace: argocd
+spec:
+  project: itd-test
+  source:
+    repoURL: https://github.com/jaisuveerjain/K8-Services.git
+    targetRevision: main
+    path: argocd/kube_configs
+  destination:
+    server: https://3.72.233.24:6443
+    namespace: ip-app
+  syncPolicy:
+    syncOptions:
+    - CreateNamespace=true
+    automated:
+      selfHeal: true
+      prune: true
