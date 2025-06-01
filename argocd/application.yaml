@@ -11,7 +11,7 @@ spec:
     path: argocd/kube_configs
   destination:
     server: https://3.72.233.24:6443
-    namespace: ip-app
+    namespace: default
   syncPolicy:
     syncOptions:
     - CreateNamespace=true

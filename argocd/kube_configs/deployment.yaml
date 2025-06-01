@@ -1,11 +1,9 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: ip-app
-  labels:
-    app: ip-app
+  name: ip-app-deployment
 spec:
-  replicas: 3
+  replicas: 4
   selector:
     matchLabels:
       app: ip-app
@@ -15,7 +13,14 @@ spec:
         app: ip-app
     spec:
       containers:
-      - name: ip-app
-        image: harshajain/ip_app
+      - name: ipapp
+        image: harshajain/ip_app:latest
         ports:
-        - containerPort: 80
+        - containerPort: 8080
+        volumeMounts:
+        - name: pvc-vol
+          mountPath: /app/pvc-volume
+      volumes:
+      - name: pvc-vol
+        persistentVolumeClaim:
+          claimName: my-pvc
